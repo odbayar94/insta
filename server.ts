@@ -8,16 +8,15 @@ require('dotenv').config()
 const app = express()
 
 const port = process.env.PORT || 5000
-const uri = process.env.ATLAS_URI
+const uri: string = process.env.ATLAS_URI || ''
 
 app.use(cors())
 app.use(express.json())
 
 //router
-app.use(userRouter);
+app.use(userRouter)
 
-// mongoose.connect(uri)
-mongoose.connect('mongodb+srv://admin:gqA9N9njOdOZE1od@cluster0.nvm7v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect(uri)
 const connection = mongoose.connection
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully')
