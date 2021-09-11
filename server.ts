@@ -3,7 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import userRouter from './routes/userRoutes'
 
-require('dotenv').config()
+require('dotenv').config({ path: "./config/config.env" });
 
 const app = express()
 
@@ -19,13 +19,13 @@ app.use(userRouter)
 mongoose.connect(uri)
 const connection = mongoose.connection
 connection.once('open', () => {
-    console.log('MongoDB database connection established successfully')
+    console.log('MongoDB database connection established successfully');
 })
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Hello World!');
 })
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`)
+    console.log(`Server is running on port: ${port}`);
 })
