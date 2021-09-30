@@ -14,7 +14,7 @@ app.use(cors())
 app.use(express.json())
 
 //router
-app.use(userRouter)
+app.use("/users",userRouter)
 
 mongoose.connect(uri)
 const connection = mongoose.connection
