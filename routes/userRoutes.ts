@@ -1,9 +1,10 @@
 import express from "express";
-import userModel from '../models/users'
+import userModel from '../models/User'
 import * as users from "../controller/users"
 
 const userRouter = express.Router();
-userRouter.get("/", users.getUsers);
-userRouter.post("/", users.createUsers);
+
+userRouter.post("/register", users.registerUser);
+userRouter.post("/login", users.login);
 
 export default userRouter;
