@@ -24,10 +24,12 @@
         "crypto": "^1.0.1",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
+        "express-async-handler": "^1.1.4",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.0.5",
         "morgan": "^1.10.0",
         "nodemon": "^2.0.12",
+        "ts-custom-error": "^3.2.0",
         "ts-node": "^10.2.1",
         "typescript": "^4.4.2"
     },

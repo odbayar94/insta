@@ -1,9 +1,14 @@
+import {IError} from "../interfaces"
+
 class MyError extends Error {
-    statusCode: number;
-    constructor(message: string, statusCode: number) {
-      super(message);
-      this.statusCode = statusCode;
-    }
-  }
-  
-module.exports = MyError;  
+      messageCode: string;
+      statusCode: number;
+    
+        constructor(error: IError) {
+          super(error.message);
+          this.statusCode = error.statusCode;
+          this.messageCode = error.messageCode;
+        }
+}
+      
+export = MyError;

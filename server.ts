@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import userRouter from './routes/userRoutes'
+import errorHandler from "./middleware/error";
 
 require('dotenv').config({ path: "./config/config.env" });
 
@@ -14,7 +15,8 @@ app.use(cors())
 app.use(express.json())
 
 //router
-app.use("/api/v1/users",userRouter)
+app.use("/api/v1/users",userRouter);
+app.use(errorHandler);
 
 mongoose.connect(uri)
 const connection = mongoose.connection

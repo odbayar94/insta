@@ -1,11 +1,10 @@
-import mongoose from 'mongoose';
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import validator from 'validator';
 import jwt from "jsonwebtoken";
+import mongoose, { Schema, model, Model, Document, ObjectId } from 'mongoose';
 
-
-export interface UserDoc extends Document {
+export interface IUser extends Document{
   username: string;
   email: string;
   password: string;
@@ -15,14 +14,15 @@ export interface UserDoc extends Document {
   getJsonWebToken: ()=> Promise<string>;
 }
 
+
 const customValidateEmail = function(email: string) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email)
 };
 
-const Schema = mongoose.Schema;
-
-const UserSchema = new Schema<UserDoc>({
+// const Schema = mongoose.Schema;
+//<UserDoc>
+const UserSchema = new Schema({
     username: { type: String, required: true, unique: true },
     email: {
         type: String,
@@ -72,5 +72,6 @@ UserSchema.methods.getJsonWebToken = function () {
   return token;
 };
 
-const User = mongoose.model<UserDoc>('User', UserSchema)
+// const User = mongoose.model<IUserModel & Document>('User', UserSchema)
+const User: Model<IUser> = model('User', UserSchema)
 export default User
