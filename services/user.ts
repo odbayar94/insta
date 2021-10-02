@@ -6,11 +6,11 @@ import User from "../models/User";
 
 import {IUserCreate, IResponse, ILogin, IError} from "../interfaces"
 
-async function matchPassword(enteredPassword: string, userPassword: string) {
+const matchPassword = async function (enteredPassword: string, userPassword: string) {
     let isValid = await bcrypt.compare(enteredPassword, userPassword);
     return isValid;
   };
-async function getJsonWebToken(id: string){
+const getJsonWebToken = async function (id: string){
     const token = jwt.sign(
         { id },
         `INSTAGRAM23134842DJ`,
@@ -34,7 +34,7 @@ var errorObj: IError = {
   statusCode: 401
 }
 
-export async function getUsers({username, password}: ILogin) {
+exports.getUsers = async function (username: string, password: string) {
 
     try {
         const user = await User.findOne({username});
@@ -67,7 +67,7 @@ export async function getUsers({username, password}: ILogin) {
     }
 }
 
-export  async function registerUser({username, password, email}: IUserCreate){
+exports.registerUser = async function(username:string, password:string, email:string){
   try{
     const user = await User.create({username, password, email});
     if(!user){
