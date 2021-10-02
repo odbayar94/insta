@@ -55,23 +55,6 @@ UserSchema.pre('save', function(next){
   }
 });
 
-UserSchema.methods.matchPassword = async function (enteredPassword) {
-  let isValid = await bcrypt.compare(enteredPassword, this.password);
-  return isValid 
-};
-
-UserSchema.methods.getJsonWebToken = function () {
-  const token = jwt.sign(
-    { id: this._id},
-    `INSTAGRAM23134842DJ`,
-    {
-      expiresIn: process.env.JWT_EXPIRESIN,
-    }
-  );
-
-  return token;
-};
-
 // const User = mongoose.model<IUserModel & Document>('User', UserSchema)
 const User: Model<IUser> = model('User', UserSchema)
 export default User

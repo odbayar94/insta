@@ -1,15 +1,16 @@
+import config from './config';
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import userRouter from './routes/userRoutes'
+import userRouter from './routes/userRoutes';
 import errorHandler from "./middleware/error";
 
-require('dotenv').config({ path: "./config/config.env" });
+// require('dotenv').config({ path: "./src/config/config.env" });
 
 const app = express()
 
-const port = process.env.PORT || 5000
-const uri: string = process.env.ATLAS_URI || ''
+const port = config.port || 5000
+const uri: string = config.databaseURL || ''
 
 app.use(cors())
 app.use(express.json())

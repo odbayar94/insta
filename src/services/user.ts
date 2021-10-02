@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import config from '../config';
 import MyError from "../utils/MyError";
 import User from "../models/User";
 
@@ -15,7 +16,8 @@ const getJsonWebToken = async function (id: string){
         { id },
         `INSTAGRAM23134842DJ`,
         {
-          expiresIn: process.env.JWT_EXPIRESIN,
+          // expiresIn: process.env.JWT_EXPIRESIN,
+          expiresIn: config.jwtExpiresIn,
         }
       );
     
