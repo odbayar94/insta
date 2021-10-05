@@ -4,15 +4,7 @@ import validator from 'validator';
 import jwt from "jsonwebtoken";
 import mongoose, { Schema, model, Model, Document, ObjectId } from 'mongoose';
 
-export interface IUser extends Document{
-  username: string;
-  email: string;
-  password: string;
-  createdAt: number;
-  lastLogin: number;
-  matchPassword: (pw: string) => Promise<boolean>;
-  getJsonWebToken: ()=> Promise<string>;
-}
+import {IUser} from '../interfaces'
 
 
 const customValidateEmail = function(email: string) {
@@ -20,8 +12,6 @@ const customValidateEmail = function(email: string) {
   return re.test(email)
 };
 
-// const Schema = mongoose.Schema;
-//<UserDoc>
 const UserSchema = new Schema({
     username: { type: String, required: true, unique: true },
     email: {
@@ -55,6 +45,5 @@ UserSchema.pre('save', function(next){
   }
 });
 
-// const User = mongoose.model<IUserModel & Document>('User', UserSchema)
 const User: Model<IUser> = model('User', UserSchema)
 export default User

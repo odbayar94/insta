@@ -29,3 +29,18 @@ export interface IError{
     messageCode: string;
     statusCode: number;
 }
+
+export interface IUser extends Document{
+    username: string;
+    email: string;
+    password: string;
+    createdAt: number;
+    lastLogin: number;
+  }
+
+  export interface IPost extends Document{
+    postedBy: ObjectId;
+    caption: String;
+    photoPath: string;
+    createdAt: number;
+  }

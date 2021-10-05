@@ -1,8 +1,12 @@
-const mongoose = require('mongoose')
-// const Schema = mongoose.Schema
-const postSchema = new mongoose.Schema({
-    postedBy: { type: mongoose.Schema.ObjectId, ref: 'users' },
+import mongoose, { Schema, model, Model, Document, ObjectId } from 'mongoose';
+import {IPost} from '../interfaces';
+
+const PostSchema = new Schema({
+    postedBy: { type: ObjectId, ref: 'users' },
     caption: { type: String, required: false },
     photoPath: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
+    createdAt: { type: Number, default: Date.now },
 })
+
+const Post: Model<IPost> = model('Post', PostSchema)
+export default Post
