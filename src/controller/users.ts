@@ -5,8 +5,8 @@ import asyncHandler from "express-async-handler";
 import {IError} from "../interfaces";
 import MyError from "../utils/MyError";
 import User from "../models/User";
-// const UserService = require('../services/user');
-import {getUsers, registerUserService} from '../services';
+
+import * as service from "../services"
 
 var errorObj: IError = {
     message: "",
@@ -21,7 +21,7 @@ export const login = asyncHandler(async (req: Request,res: Response, next: NextF
             throw new MyError({...errorObj, message: "Нэр нууц үг оруулна уу"});
         }
 
-        const userResponse = await getUsers(username, password);
+        const userResponse = await service.getUser(username, password);
         //response handler, custom message ...
         res.status(userResponse.statusCode).json(userResponse);
 });
@@ -29,7 +29,7 @@ export const registerUser = asyncHandler(async (req: Request,res: Response, next
     
         const {username, password, email} = req.body;
         // const user = await User.create({username, password, email})
-        const user = await registerUserService(username, password, email);
+        const user = await service.registerUser(username, password, email);
         res.status(200).json({
             success: true,
             user: user,

@@ -6,3 +6,6 @@ export interface IPostModel extends Document{
     imgUrl: string;
     createdAt?: number;
 }
+export interface IPost {
+    id: ObjectId,
+}

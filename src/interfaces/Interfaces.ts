@@ -1,4 +1,5 @@
 import {ObjectId } from 'mongoose';
+import {IPost} from './Posts';
 
 export interface IUserCreate{
     email: string;
@@ -13,12 +14,15 @@ export interface IResponse {
     message: string;
     messageCode: string; 
     user?: IUser;
+    post?: IPost;
 }
 
 export interface IUser{
   id: ObjectId;
   token: string;
 }
+
+
 
 export interface ILogin{
     password: string;
