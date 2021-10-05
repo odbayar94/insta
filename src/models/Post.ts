@@ -1,6 +1,6 @@
 import mongoose, { Schema, model, Model, Document } from 'mongoose';
 import { ObjectId } from "mongodb";
-import {IPost} from '../interfaces';
+import {IPostModel} from '../interfaces';
 
 const PostSchema = new Schema({
 
@@ -10,5 +10,5 @@ const PostSchema = new Schema({
     createdAt: { type: Number, default: Date.now },
 })
 
-const Post: Model<IPost> = model('Post', PostSchema)
+const Post: Model<IPostModel> = model('Post', PostSchema)
 export default Post

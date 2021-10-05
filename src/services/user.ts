@@ -7,7 +7,7 @@ import User from "../models/User";
 
 import {IUserCreate, IResponse, ILogin, IError} from "../interfaces"
 
-const matchPassword = async function (enteredPassword: string, userPassword: string) {
+const checkPassword = async function (enteredPassword: string, userPassword: string) {
     let isValid = await bcrypt.compare(enteredPassword, userPassword);
     return isValid;
   };
@@ -16,7 +16,6 @@ const getJsonWebToken = async function (id: string){
         { id },
         config.jwtSecret,
         {
-          // expiresIn: process.env.JWT_EXPIRESIN,
           expiresIn: config.jwtExpiresIn,
         }
       );
@@ -45,7 +44,7 @@ exports.getUsers = async function (username: string, password: string) {
           errorObj = {...errorObj, message: "Нэр нууц үг буруу байна",  messageCode: "LOGIN402"};
           throw new Error();
         }
-        const passwordValid = await matchPassword(password, user.password);
+        const passwordValid = await checkPassword(password, user.password);
         
             if(!passwordValid){
               errorObj = {...errorObj, message: "Нэр нууц үг буруу байна",  messageCode: "LOGIN402"};
