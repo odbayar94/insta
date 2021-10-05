@@ -1,10 +1,12 @@
-import mongoose, { Schema, model, Model, Document, ObjectId } from 'mongoose';
+import mongoose, { Schema, model, Model, Document } from 'mongoose';
+import { ObjectId } from "mongodb";
 import {IPost} from '../interfaces';
 
 const PostSchema = new Schema({
+
     postedBy: { type: ObjectId, ref: 'users' },
     caption: { type: String, required: false },
-    photoPath: { type: String, required: true },
+    imgUrl: { type: String, required: true },
     createdAt: { type: Number, default: Date.now },
 })
 

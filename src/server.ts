@@ -2,7 +2,9 @@ import config from './config';
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import userRouter from './routes/userRoutes';
+
+import userRouter from './routes/user';
+import postRouter from './routes/post';
 import errorHandler from "./middleware/error";
 
 // require('dotenv').config({ path: "./src/config/config.env" });
@@ -17,6 +19,7 @@ app.use(express.json())
 
 //router
 app.use("/api/v1/users",userRouter);
+app.use("/api/v1/posts",postRouter);
 app.use(errorHandler);
 
 mongoose.connect(uri)
