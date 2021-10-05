@@ -14,12 +14,14 @@ var errorObj: IError = {
   }
 
 export const login = asyncHandler(async (req: Request,res: Response, next: NextFunction) => {
+      //request handler, validation
         const {username, password} = req.body;
         if(!username || !password){
             throw new MyError({...errorObj, message: "Нэр нууц үг оруулна уу"});
         }
 
         const userResponse = await UserService.getUsers(username, password);
+        //response handler, custom message ...
         res.status(userResponse.statusCode).json(userResponse);
 });
 export const registerUser = asyncHandler(async (req: Request,res: Response, next: NextFunction) => {

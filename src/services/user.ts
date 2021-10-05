@@ -14,7 +14,7 @@ const matchPassword = async function (enteredPassword: string, userPassword: str
 const getJsonWebToken = async function (id: string){
     const token = jwt.sign(
         { id },
-        `INSTAGRAM23134842DJ`,
+        config.jwtSecret,
         {
           // expiresIn: process.env.JWT_EXPIRESIN,
           expiresIn: config.jwtExpiresIn,

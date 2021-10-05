@@ -14,7 +14,7 @@ export default {
  
   port: process.env.PORT,
   databaseURL: process.env.MONGODB_URI,
-  jwtSecret: process.env.JWT_SECRET,
+  jwtSecret: "" + process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRESIN,
 
 };
