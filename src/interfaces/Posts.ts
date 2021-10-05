@@ -7,5 +7,27 @@ export interface IPostModel extends Document{
     createdAt?: number;
 }
 export interface IPost {
-    id: ObjectId,
+    _id?: ObjectId,
+    postedBy?: ObjectId,
+    caption?: string,
+    imgUrl?: string,
+    createdAt?: number,
+}
+
+// export type IPosts =  {
+//     [index: number]: { 
+//         _id?: ObjectId,
+//         postedBy?: ObjectId,
+//         caption?: string,
+//         imgUrl?: string,
+//         createdAt?: number, };
+// }
+
+export interface IPosts {
+    
+        _id?: ObjectId;
+        postedBy?: ObjectId;
+        caption?: string;
+        imgUrl?: string;
+        createdAt?: number;
 }

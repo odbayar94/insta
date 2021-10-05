@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import asyncHandler from "express-async-handler";
 
-import {IError, IResponse} from "../interfaces";
+import {IError, IResponse, IRequest} from "../interfaces";
 import MyError from "../utils/MyError";
 import Post from "../models/Post";
 
@@ -34,7 +34,7 @@ var errorObj: IError = {
         messageCode: "POST200", 
         message: "Таны бичсэн пост амжилттай орлоо",
         post:{
-          id: post,
+          _id: post,
         }}
 
     }else{
@@ -42,4 +42,33 @@ var errorObj: IError = {
     }
     
       res.status(200).json(response);
+});
+
+export const getPosts = asyncHandler(async (req: IRequest,res: Response, next: NextFunction) => {
+const userId: any = req.userId;
+
+    const token = true;
+    if(!token){
+      throw new MyError({...errorObj, message: "Утга дутуу байна", messageCode: "POST400" });
+    }
+      const post = await service.getPosts(userId);
+      
+      if(post.length == 0){
+        throw new MyError({...errorObj, message: "Хэрэглэгчид харгалзах пост байхгүй", messageCode: "POST402"});
+      }
+     
+      
+      // response = {
+      //   success: true,
+      //   statusCode: 200,
+      //   messageCode: "POST201", 
+      //   message: "Амжилттай",
+      //   posts: post
+      //   // posts:{
+      //   //   post
+      //   // }
+      // }
+
+    
+      res.status(200).json(post);
 });

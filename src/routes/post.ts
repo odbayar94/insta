@@ -1,11 +1,12 @@
 import express from "express";
+
+import protect from "../middleware/protect";
 import * as posts from "../controller/posts"
 
 const router = express.Router();
-// userRouter.post("/register", users.registerUser);
 
-// router.post("/",posts.createNew);
-router.post("/",posts.createNew);
-
+router.route("/")
+.post(protect,posts.createNew)
+.get(protect,posts.getPosts);
 
 export default router;

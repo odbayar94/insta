@@ -1,10 +1,15 @@
 import {ObjectId } from 'mongoose';
-import {IPost} from './Posts';
+import {IPost, IPosts} from './Posts';
+import { Request, Response, NextFunction } from "express";
 
 export interface IUserCreate{
     email: string;
     password: string;
     username: string;
+}
+
+export interface IRequest extends Request{
+    userId?: ObjectId
 }
 
 
@@ -15,6 +20,7 @@ export interface IResponse {
     messageCode: string; 
     user?: IUser;
     post?: IPost;
+    posts?: IPosts;
 }
 
 export interface IUser{
