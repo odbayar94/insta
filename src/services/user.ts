@@ -35,7 +35,7 @@ var errorObj: IError = {
   statusCode: 401
 }
 
-exports.getUsers = async function (username: string, password: string) {
+export const getUsers = async function (username: string, password: string) {
 
     try {
         const user = await User.findOne({username});
@@ -68,7 +68,7 @@ exports.getUsers = async function (username: string, password: string) {
     }
 }
 
-exports.registerUser = async function(username:string, password:string, email:string){
+export const registerUserService = async function(username:string, password:string, email:string){
   try{
     const user = await User.create({username, password, email});
     if(!user){
@@ -78,5 +78,4 @@ exports.registerUser = async function(username:string, password:string, email:st
   }catch(error){
     throw new MyError(errorObj);
   }
- 
 }
