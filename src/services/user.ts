@@ -28,7 +28,7 @@ var response: IResponse = {
   success: false,
   statusCode: 401,
   messageCode: "error", 
-  message: "Service doesn't work"
+  message: "Service doesn't work",
 };
 var errorObj: IError = {
   message: "",

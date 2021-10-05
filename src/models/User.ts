@@ -4,7 +4,7 @@ import validator from 'validator';
 import jwt from "jsonwebtoken";
 import mongoose, { Schema, model, Model, Document, ObjectId } from 'mongoose';
 
-import {IUser} from '../interfaces'
+import {IUserModel} from '../interfaces'
 
 
 const customValidateEmail = function(email: string) {
@@ -45,5 +45,5 @@ UserSchema.pre('save', function(next){
   }
 });
 
-const User: Model<IUser> = model('User', UserSchema)
+const User: Model<IUserModel> = model('User', UserSchema)
 export default User

@@ -30,7 +30,7 @@ export interface IError{
     statusCode: number;
 }
 
-export interface IUser extends Document{
+export interface IUserModel extends Document{
     username: string;
     email: string;
     password: string;
