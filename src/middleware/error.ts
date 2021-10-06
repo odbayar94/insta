@@ -11,6 +11,11 @@ export default function errorHandler (err: any, req: Request,res: Response, next
       error.message = "Та логин хийж байж энэ үйлдлийг хийх боломжтой...";
       error.statusCode = 401;
     }
+
+    if (error.message === "11000") {
+      error.message = "Энэ талбарын утгыг давхардуулж өгч болохгүй!";
+      error.statusCode = 406;
+    }
   
     if (error.name === "JsonWebTokenError" && error.message === "invalid token") {
       error.message = "Буруу токен дамжуулсан байна!";
@@ -21,8 +26,7 @@ export default function errorHandler (err: any, req: Request,res: Response, next
       error.message = "Энэ талбарын утгыг давхардуулж өгч болохгүй!";
       error.statusCode = 400;
     }
-  
-    res.status(err.statusCode || 500).json({
+    res.status(error.statusCode || 500).json({
       success: false,
       error,
     });

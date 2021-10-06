@@ -75,7 +75,7 @@ export const registerUser = async function(username:string, password:string, ema
       throw new Error();
     }
     return response;
-  }catch(error){
-    throw new MyError(errorObj);
+  }catch(err : any){
+    throw new Error(err.code);
   }
 }

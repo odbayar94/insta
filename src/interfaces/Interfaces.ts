@@ -1,6 +1,7 @@
 import {ObjectId } from 'mongoose';
 import {IPost, IPosts} from './Posts';
 import { Request, Response, NextFunction } from "express";
+import { IPostModel } from '.';
 
 export interface IUserCreate{
     email: string;
@@ -19,16 +20,14 @@ export interface IResponse {
     message: string;
     messageCode: string; 
     user?: IUser;
-    post?: IPost;
-    posts?: IPosts;
+    // post?: IPost;
+    data?: (IPostModel & { _id: ObjectId; })[]; 
 }
 
 export interface IUser{
   id: ObjectId;
   token: string;
 }
-
-
 
 export interface ILogin{
     password: string;
