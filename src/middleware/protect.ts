@@ -15,11 +15,11 @@ var errorObj: IError = {
 
 const protect = asyncHandler(async (req: IRequest,res: Response, next: NextFunction) => {
     let token = null;
-
+    
     if (req.headers.authorization) {
         token = req.headers.authorization.split(" ")[1];
       } else if (req.cookies) {
-        token = req.cookies["amazon-token"];
+        token = req.cookies["token"];
       }
 
       if(!token){

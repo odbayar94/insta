@@ -16,5 +16,21 @@ export default {
   databaseURL: process.env.MONGODB_URI,
   jwtSecret: "" + process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRESIN,
+  
 
+};
+
+const whiteList = ["http://localhost:3000", "http://localhost:3001"];
+
+export const corsOptions = {
+  origin: function (origin: any, callback: any) {
+    if (origin === undefined || whiteList.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Block.."));
+    }
+  },
+  allowedHeaders: "Authorization, Set-Cookie, Content-Type",
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true,
 };
