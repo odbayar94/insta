@@ -5,7 +5,7 @@ import config from '../config';
 import MyError from "../utils/MyError";
 import User from "../models/User";
 
-import {IUserCreate, IResponse, ILogin, IError} from "../interfaces"
+import {IUserCreate, IResponse, ILogin, IError} from "../interfaces";
 
 const checkPassword = async function (enteredPassword: string, userPassword: string) {
     let isValid = await bcrypt.compare(enteredPassword, userPassword);

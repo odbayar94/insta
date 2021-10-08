@@ -21,3 +21,9 @@ yarn-debug.log*
 yarn-error.log*
 .env
 package-lock.json
+
+#Test
+/test
+/coverage
+test-report.html
+jest.config.js
